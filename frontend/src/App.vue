@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const rooms = ref([
   {
@@ -134,11 +134,26 @@ const rooms = ref([
       'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80',
   },
 ])
-
+    
 const searchQuery = ref('')
 const maxPrice = ref(1000)
 const selectedRoom = ref(null)
 const isLoggedIn = ref(false)
+
+const fetchRooms = async () => {
+  try {
+     
+    const response = await fetch('[https://web-project-hms-production.up.railway.app/rooms](https://web-project-hms-production.up.railway.app/rooms)')
+    const data = await response.json()
+    rooms.value = data
+  } catch (error) {
+    console.error("Error fetching rooms:", error)
+  }
+}
+
+onMounted(() => {
+  fetchRooms()
+})
 
 const filteredRooms = computed(() => {
   return rooms.value.filter((room) => {
@@ -154,6 +169,7 @@ const handleLogin = () => {
   const userConfirm = confirm('Do you want to simulate a login?')
   if (userConfirm) isLoggedIn.value = true
 }
+  
 </script>
 
 <style>
@@ -166,25 +182,23 @@ body {
 }
 
 #app {
-  max-width: 490px;
-  margin: 10 auto;
-  padding-bottom: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:20px 40px 20px;
 }
 
 /* Navbar with separation */
 .navbar {
-  background: gold;
+  background: #ffffff;
   border-bottom: 1px solid #eee;
-  border-radius: 150px;
-  padding: 10px 20px;
+  border-radius: 150px 0;
+  padding: 15px 0px;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .nav-container {
-  max-width: 1000px;
-  margin: 0px;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -232,8 +246,8 @@ input[type='text'] {
 }
 .room-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
 }
 
 .room-image {
