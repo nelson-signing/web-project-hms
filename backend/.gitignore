@@ -4,6 +4,7 @@ node_modules/
 *.log
 npm-debug.log*
 .idea/
+../.idea/
 *.iml
 *.iws
 .DS_Store

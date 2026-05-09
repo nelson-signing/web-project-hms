@@ -24,7 +24,7 @@ exports.getAllRooms = async (filters) => {
 
     return await Room.findAll({
         where: whereConditions,
-        order: [['price_per_night', 'ASC']]
+        order: [['number', 'ASC']]
     });
 };
 

@@ -13,7 +13,7 @@ const Room = sequelize.define('Room', {
         unique: true
     },
     type: {
-        type: DataTypes.ENUM('single', 'double', 'suite'),
+        type: DataTypes.ENUM('single', 'double', 'suite', 'deluxe', 'family'),
         allowNull: false
     },
     price_per_night: {

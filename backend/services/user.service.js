@@ -1,5 +1,19 @@
 const { User, Client, Staff } = require('../models');
 
+exports.getAllClients = async () => {
+    return await Client.findAll({
+        attributes: ['id_user'],
+        include: [{
+            model: User,
+            attributes: ['first_name', 'last_name', 'email']
+        }],
+        order: [
+            [User, 'first_name', 'ASC'],
+            [User, 'last_name', 'ASC']
+        ]
+    });
+};
+
 exports.getUserProfile = async (userId, role) => {
     const ProfileModel = (role === 'staff') ? Staff : Client;
 

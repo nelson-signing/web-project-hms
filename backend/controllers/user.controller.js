@@ -1,5 +1,14 @@
 const userService = require('../services/user.service');
 
+exports.getClients = async (req, res, next) => {
+    try {
+        const clients = await userService.getAllClients();
+        res.status(200).json(clients);
+    } catch (error) {
+        next(error);
+    }
+};
+
 exports.getProfile = async (req, res, next) => {
     try {
         const { id_user, role } = req.user;

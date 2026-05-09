@@ -1,6 +1,8 @@
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+const PORT = process.env.PORT || 3000;
+
 const options = {
     definition: {
         openapi: '3.0.0',
@@ -11,9 +13,7 @@ const options = {
         },
         servers: [
             {
-                url: process.env.RAILWAY_PUBLIC_DOMAIN
-                    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
-                    : 'http://localhost:3000'
+                url: `http://localhost:${PORT}`
             },
         ],
         components: {
@@ -30,8 +30,8 @@ const options = {
                     properties: {
                         first_name: { type: 'string', example: 'Jean' },
                         last_name: { type: 'string', example: 'Dupont' },
-                        email: { type: 'string', example: 'jean.dupont@email.com' },
-                        password: { type: 'string', example: 'MotDePasse123' },
+                        email: { type: 'string', example: 'jean.dupont@gmail.com' },
+                        password: { type: 'string', example: 'password123' },
                         phone_number: { type: 'string', example: '0601020304' },
                         address: { type: 'string', example: '123 Rue de la Paix, 75000 Paris' }
                     }
@@ -41,23 +41,23 @@ const options = {
                     properties: {
                         registration_key: { type: 'string', example: 'MyHotelSecret123!' },
                         first_name: { type: 'string', example: 'Alice' },
-                        last_name: { type: 'string', example: 'Manager' },
-                        email: { type: 'string', example: 'staff.alice@hotel.com' },
+                        last_name: { type: 'string', example: 'Smith' },
+                        email: { type: 'string', example: 'alice.smith@luxuryhotel.com' },
                         password: { type: 'string', example: 'StaffSecure789' }
                     }
                 },
                 Login: {
                     type: 'object',
                     properties: {
-                        email: { type: 'string', example: 'jean.dupont@email.com' },
-                        password: { type: 'string', example: 'MotDePasse123' }
+                        email: { type: 'string', example: 'jean.dupont@gmail.com' },
+                        password: { type: 'string', example: 'password123' }
                     }
                 },
                 UpdateProfile: {
                     type: 'object',
                     properties: {
-                        first_name: { type: 'string', example: 'Jean-Marc' },
-                        last_name: { type: 'string', example: 'Dupontel' },
+                        first_name: { type: 'string', example: 'Marc' },
+                        last_name: { type: 'string', example: 'Dupont' },
                         phone_number: { type: 'string', example: '0701020304' },
                         address: { type: 'string', example: '456 Avenue des Champs-Élysées'}
                     }

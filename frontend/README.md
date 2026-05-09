@@ -37,8 +37,8 @@ npm run dev
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run lint
+npm run test:unit
 ```
